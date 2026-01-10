@@ -5,9 +5,10 @@ Este proyecto es una API en Flask para consultar información de RUCs utilizando
 ## Requisitos
 
 *   Docker
+*   Docker Compose
 *   Git
 
-## Instalación y Ejecución con Docker
+## Instalación y Ejecución con Docker Compose
 
 1.  Clona el repositorio:
     ```bash
@@ -15,16 +16,14 @@ Este proyecto es una API en Flask para consultar información de RUCs utilizando
     cd API
     ```
 
-2.  Crea un archivo `.env` basado en tus necesidades (asegúrate de configurar `JWT_SECRET`).
-
-3.  Construye la imagen de Docker:
+2.  Crea un archivo `.env` basado en el ejemplo `.env.example` y configura tu `JWT_SECRET`:
     ```bash
-    docker build -t consulta-ruc-api .
+    cp .env.example .env
     ```
 
-4.  Ejecuta el contenedor:
+3.  Construye y levanta el servicio:
     ```bash
-    docker run -d -p 5000:5000 --env-file .env --name consulta-ruc-container consulta-ruc-api
+    docker-compose up -d --build
     ```
 
 La API estará disponible en `http://localhost:5000`.
@@ -33,7 +32,7 @@ La API estará disponible en `http://localhost:5000`.
 
 *   `GET /consulta-ruc/<numero_ruc>`: Consulta información de un RUC. Requiere token Bearer.
 
-## Desarrollo Local
+## Desarrollo Local (sin Docker)
 
 1.  Instala las dependencias:
     ```bash
